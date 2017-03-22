@@ -2,7 +2,7 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 // function to international name
-function nameChanger(oldName) {
+function inName(oldName) {
     var finalName = oldName;
     var name = oldName.split(" ");
     name[1] = name[1].toUpperCase();
@@ -22,12 +22,14 @@ var bio = {
     },
     "welcomeMessage": "Hello World!",
     "skills": ["Designing", "Programming", "Sleeping","Coding","Painting"],
-    "biopic": "images/me.jpg"
-}; //End bio
-
-function displayHeader() {
+    "biopic": "images/me.jpg",
+    display:function () {
     $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
-    $("#header").prepend(HTMLheaderName.replace("%data%", nameChanger(bio.name)));
+    $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+
+// adding button
+$('#header').append(internationalizeButton);
+
     $("#topContacts,#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
     $("#topContacts,#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
     $("#topContacts,#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
@@ -42,9 +44,12 @@ function displayHeader() {
             $("#header").append(HTMLskills.replace("%data%", bio.skills[i]));
         } //end for skills loop
     } // End if
-} //End displayHeader function
+} //End display function
+}; //End bio
 
-displayHeader();
+
+
+bio.display();
 
 //Work Experience
 
@@ -64,10 +69,8 @@ var work= {
                  'dates': 'April 2015 - May 2015',
                  'description': 'It is a 3 months interns program focused on up-skilling graduated across the MENA region. Contains component in order to up-skill graduates with SAP certifications and functional tracks.'
               }
-               ]//end jobs
-};//end work experience
-
-function displayWorkExperience()
+               ],//end jobs
+               display:function ()
 {
 
 if (work.jobs.length > 0) { //check if there any jobs
@@ -82,39 +85,44 @@ if (work.jobs.length > 0) { //check if there any jobs
         } //end for jobs loop
     } // End if
 }// end displayWorkExperience
+};//end work experience
 
-displayWorkExperience();
+
+
+work.display();
 
 //Projects information
-var projects= [
+var projects= {'project':[
                 {
                   'title': 'Website' ,
                   'dates': '2015',
                   'description': 'Web based Application for school.',
-                  'images': ['images/fry.jpg','images/fry.jpg']
+                  'images': ['images/project.gif','images/project.gif']
 
               }
-            ];//end projects
-
-function displayProjects(){
+            ],//end projects array
+            display:function (){
 
      $('#projects').append(HTMLprojectStart);
 
-        for (var i = 0; i <= projects.length - 1; i++) {
+        for (var i = 0; i <= projects.project.length - 1; i++) {
 
-            $('.project-entry:last').append(HTMLprojectTitle.replace('%data%', projects[i].title));
-            $('.project-entry:last').append(HTMLprojectDates.replace('%data%', projects[i].dates));
-            $('.project-entry:last').append(HTMLprojectDescription.replace('%data%', projects[i].description));
+            $('.project-entry:last').append(HTMLprojectTitle.replace('%data%', projects.project[i].title));
+            $('.project-entry:last').append(HTMLprojectDates.replace('%data%', projects.project[i].dates));
+            $('.project-entry:last').append(HTMLprojectDescription.replace('%data%', projects.project[i].description));
 
-            for (var j = 0; j < projects[i].images.length; j++) {
-               $('.project-entry:last').append(HTMLprojectImage.replace('%data%', projects[i].images[j]));
+            for (var j = 0; j < projects.project[i].images.length; j++) {
+               $('.project-entry:last').append(HTMLprojectImage.replace('%data%', projects.project[i].images[j]));
             }//end images loop
 
         } //end for projects loop
 
 }// end displayProjects
+            };//end projects
 
-displayProjects();
+
+
+projects.display();
 
 //Education information
 var education ={
@@ -148,13 +156,9 @@ var education ={
                  'dates': '2016',
                  'url': 'http://coursera.com'
              }
-             ]//end Online courses
-};//end education
-
-function displayEducation(){
-
-//$('#education').append(HTMLschoolStart);
-if (education.schools.length>0){
+             ],//end Online courses
+             display: function(){
+                if (education.schools.length>0){
         for (var i = 0; i <= education.schools.length - 1; i++) {
             $("#education").append(HTMLschoolStart);
             $('.education-entry:last').append(HTMLschoolName.replace('%data%', education.schools[i].name)+HTMLschoolDegree.replace('%data%', education.schools[i].degree));
@@ -176,7 +180,9 @@ if (education.schools.length>0){
         }//end online courses loop
     }//end if
 }//end displayEducation
+};//end education
 
-displayEducation();
+education.display();
 
 //Adding map
+$('#mapDiv').append(googleMap);
