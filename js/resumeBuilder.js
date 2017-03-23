@@ -28,10 +28,10 @@ var bio = {
             $("#name").prepend(HTMLheaderName.replace("%data%", bio.name));
             // adding button
             $('#button').append(internationalizeButton);
-            $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-            $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-            $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-            $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+            $("#topContacts,#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+            $("#topContacts,#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+            $("#topContacts,#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+            $("#topContacts,#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
             $(".profile-thumb").attr("style", HTMLbioPic.replace("%data%", bio.biopic));
             $("#msg").prepend(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
             if (bio.skills.length > 0) { //check if there any skils
@@ -85,7 +85,7 @@ var work = {
 }; //end work experience
 //Projects information
 var projects = {
-    'project': [{
+    'projects': [{
         'title': 'Illustration',
         'dates': '2015',
         'description': 'Company website',
@@ -128,11 +128,13 @@ var projects = {
     }], //end projects array
     display: function() {
             $('#projects').append(HTMLprojectStart);
-            for (var i = 0; i <= projects.project.length - 1; i++) {
-                $('.projects-entry:last').append(HTMLprojectImage.replace('%data%', projects.project[i].images[0]));
-                $('.desc:last').append(HTMLprojectTitle.replace('%data%', projects.project[i].title));
-                $('.desc:last').append(HTMLprojectDates.replace('%data%', projects.project[i].dates));
-                $('.desc:last').append(HTMLprojectDescription.replace('%data%', projects.project[i].description));
+            for (var i = 0; i <= projects.projects.length - 1; i++) {
+                for (var j = 0; j < projects.projects[i].images.length; j++) {
+                $('.projects-entry:last').append(HTMLprojectImage.replace('%data%', projects.projects[i].images[j]));
+            }//end images loop
+                $('.desc:last').append(HTMLprojectTitle.replace('%data%', projects.projects[i].title));
+                $('.desc:last').append(HTMLprojectDates.replace('%data%', projects.projects[i].dates));
+                $('.desc:last').append(HTMLprojectDescription.replace('%data%', projects.projects[i].description));
             } //end for projects loop
         } // end displayProjects
 }; //end projects
