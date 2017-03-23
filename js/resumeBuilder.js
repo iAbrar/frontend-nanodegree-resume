@@ -21,53 +21,56 @@ var bio = {
         "github": "iAbrar",
         "location": "Riyadh,SA"
     },
-    "welcomeMessage": "Hello World!",
-    "skills": ["Designing", "Programming", "Sleeping", "Coding", "Painting"],
-    "biopic": "images/me.jpg",
+    "welcomeMessage": "Hello There!",
+    "skills": ["HTML5", "CSS3", "jQuery", "PHP", "MySQL", "AngularJS", "Ruby", "Java"],
+    "biopic": "images/user-3.jpg",
     display: function() {
-        $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
-        $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+        $("#role").prepend(HTMLheaderRole.replace("%data%", bio.role));
+        $("#name").prepend(HTMLheaderName.replace("%data%", bio.name));
 
         // adding button
-        $('#header').append(internationalizeButton);
+        $('#button').append(internationalizeButton);
 
-        $("#topContacts,#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-        $("#topContacts,#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-        $("#topContacts,#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-        $("#topContacts,#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
-        $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
-        $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+        $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+        $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+        $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+        $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+        $(".profile-thumb").attr("style", HTMLbioPic.replace("%data%", bio.biopic));
+        $("#msg").prepend(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 
         if (bio.skills.length > 0) { //check if there any skils
-            $("#header").append(HTMLskillsStart);
+            $("#skills").append(HTMLskillsStart);
 
             for (var i = 0; i <= bio.skills.length - 1; i++) {
-                $("#header").append(HTMLskills.replace("%data%", bio.skills[i]));
+                $(".skills-entry").append(HTMLskills.replace("%data%", bio.skills[i]));
             } //end for skills loop
         } // End if
     } //End display function
 }; //End bio
-
-
-
-bio.display();
 
 //Work Experience
 
 var work = {
     'jobs': [{
             'employer': 'IT co',
-            'title': 'Web Developer',
+            'title': 'Senior Developer',
             'location': 'Jeddah,SA',
             'dates': 'April 2016 - current',
-            'description': 'Develop company websites. '
+            'description': 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. '
+        },
+        {
+            'employer': 'Company Name',
+            'title': 'Junior Developer',
+            'location': 'Jeddah,SA',
+            'dates': 'April 2016 - October 2016',
+            'description': 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. '
         },
         {
             'employer': 'SAP',
-            'title': 'intern',
+            'title': 'UI/UX Designer',
             'location': 'Khobar,SA',
-            'dates': 'April 2015 - May 2015',
-            'description': 'It is a 3 months interns program focused on up-skilling graduated across the MENA region. Contains component in order to up-skill graduates with SAP certifications and functional tracks.'
+            'dates': 'April 2013 - May 2016',
+            'description': 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.'
         }
     ], //end jobs
     display: function() {
@@ -75,67 +78,115 @@ var work = {
         if (work.jobs.length > 0) { //check if there any jobs
 
             for (var i = 0; i <= work.jobs.length - 1; i++) {
-                $('#workExperience').append(HTMLworkStart);
-                $('.work-entry:last').append(HTMLworkEmployer.replace('%data%', work.jobs[i].employer) + HTMLworkTitle.replace('%data%', work.jobs[i].title));
-                $('.work-entry:last').append(HTMLworkDates.replace('%data%', work.jobs[i].dates));
-                $('.work-entry:last').append(HTMLworkLocation.replace('%data%', work.jobs[i].location));
-                $('.work-entry:last').append(HTMLworkDescription.replace('%data%', work.jobs[i].description));
+                if ((i + 1) % 2 == 0) {
+                    $('#workExperience').append('<li class="even animate-box timeline-unverted"><div class="timeline-badge"><i class="icon-suitcase"></i></div><li>');
+                    $('.even:last').append(HTMLworkStart);
+                    $('.work-head:last').append(HTMLworkTitle.replace('%data%', work.jobs[i].title));
+                    $('.work-head:last').append(HTMLworkEmployer.replace('%data%', work.jobs[i].employer) + HTMLworkDates.replace('%data%', work.jobs[i].dates) + HTMLworkLocation.replace('%data%', work.jobs[i].location));
+                    $('.timeline-body:last').append(HTMLworkDescription.replace('%data%', work.jobs[i].description));
+                } else {
+                    $('#workExperience').append('<li class="odd timeline-inverted animate-box"><div class="timeline-badge"><i class="icon-suitcase"></i></div><li>');
+                    $('.odd:last').append(HTMLworkStart);
+                    $('.work-head:last').append(HTMLworkTitle.replace('%data%', work.jobs[i].title));
+                    $('.work-head:last').append(HTMLworkEmployer.replace('%data%', work.jobs[i].employer) + HTMLworkDates.replace('%data%', work.jobs[i].dates) + HTMLworkLocation.replace('%data%', work.jobs[i].location));
+                    $('.timeline-body:last').append(HTMLworkDescription.replace('%data%', work.jobs[i].description));
+                }
+
 
             } //end for jobs loop
         } // End if
     } // end displayWorkExperience
 }; //end work experience
 
-
-
-work.display();
-
 //Projects information
 var projects = {
     'project': [{
-        'title': 'Website',
-        'dates': '2015',
-        'description': 'Web based Application for school.',
-        'images': ['images/project.gif', 'images/project.gif']
-
-    }], //end projects array
+            'title': 'Illustration',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-1.jpg']
+        },
+        {
+            'title': 'Illustration',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-2.jpg']
+        },
+        {
+            'title': 'Illustration',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-3.jpg']
+        },
+        {
+            'title': 'Website',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-4.jpg']
+        },
+        {
+            'title': 'Illustration',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-5.jpg']
+        },
+        {
+            'title': 'Design',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-6.jpg']
+        },
+        {
+            'title': 'Website',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-7.jpg']
+        },
+        {
+            'title': 'Design',
+            'dates': '2015',
+            'description': 'Company website',
+            'images': ['images/portfolio-8.jpg']
+        }
+    ], //end projects array
     display: function() {
 
         $('#projects').append(HTMLprojectStart);
 
         for (var i = 0; i <= projects.project.length - 1; i++) {
+            $('.projects-entry:last').append(HTMLprojectImage.replace('%data%', projects.project[i].images[0]));
+            $('.desc:last').append(HTMLprojectTitle.replace('%data%', projects.project[i].title));
+            $('.desc:last').append(HTMLprojectDates.replace('%data%', projects.project[i].dates));
+            $('.desc:last').append(HTMLprojectDescription.replace('%data%', projects.project[i].description));
 
-            $('.project-entry:last').append(HTMLprojectTitle.replace('%data%', projects.project[i].title));
-            $('.project-entry:last').append(HTMLprojectDates.replace('%data%', projects.project[i].dates));
-            $('.project-entry:last').append(HTMLprojectDescription.replace('%data%', projects.project[i].description));
 
-            for (var j = 0; j < projects.project[i].images.length; j++) {
-                $('.project-entry:last').append(HTMLprojectImage.replace('%data%', projects.project[i].images[j]));
-            } //end images loop
 
         } //end for projects loop
 
     } // end displayProjects
 }; //end projects
 
-
-
-projects.display();
-
 //Education information
 var education = {
     'schools': [{
             'name': 'MIT',
             'location': 'MA, USA',
-            'degree': 'Master',
+            'degree': 'Masters Degree',
             'majors': ['IT'],
             'dates': '2017'
         },
         {
             'name': 'King Saud University',
             'location': 'Riyadh, SA',
-            'degree': 'BA',
+            'degree': 'Bachelors Degree',
             'majors': ['CS', 'SWE'],
+            'dates': '2014'
+        },
+         {
+            'name': 'King Saud University',
+            'location': 'Riyadh, SA',
+            'degree': 'Diploma Degree',
+            'majors': ['Health', 'Design'],
             'dates': '2014'
         }
     ], //end schools
@@ -156,29 +207,55 @@ var education = {
     display: function() {
         if (education.schools.length > 0) {
             for (var i = 0; i <= education.schools.length - 1; i++) {
-                $("#education").append(HTMLschoolStart);
-                $('.education-entry:last').append(HTMLschoolName.replace('%data%', education.schools[i].name) + HTMLschoolDegree.replace('%data%', education.schools[i].degree));
-                $('.education-entry:last').append(HTMLschoolLocation.replace('%data%', education.schools[i].location));
-                $('.education-entry:last').append(HTMLschoolDates.replace('%data%', education.schools[i].dates));
-                $('.education-entry:last').append(HTMLschoolMajor.replace('%data%', education.schools[i].majors));
+                if ((i + 1) % 2 == 0) {
+                        $('#education').append('<li class="even-edu timeline-inverted animate-box"><div class="timeline-badge"><i class="icon-graduation-cap"></i></div><li>');
+                        $('.even-edu:last').append(HTMLschoolStart);
+                        $('.edu-head:last').append(HTMLschoolDegree.replace('%data%', education.schools[i].degree));
+                        $('.edu-head:last').append(HTMLschoolName.replace('%data%', education.schools[i].name) + HTMLschoolDates.replace('%data%', education.schools[i].dates) + HTMLworkLocation.replace('%data%', work.jobs[i].location));
+                        $('.timeline-body:last').append(HTMLschoolMajor.replace('%data%', education.schools[i].majors));
+                    } else {
+                        $('#education').append('<li class="odd-edu animate-box timeline-unverted"><div class="timeline-badge"><i class="icon-graduation-cap"></i></div><li>');
+                        $('.odd-edu:last').append(HTMLschoolStart);
+                        $('.edu-head:last').append(HTMLschoolDegree.replace('%data%', education.schools[i].degree));
+                        $('.edu-head:last').append(HTMLschoolName.replace('%data%', education.schools[i].name) + HTMLschoolDates.replace('%data%', education.schools[i].dates) + HTMLworkLocation.replace('%data%', work.jobs[i].location));
+                        $('.timeline-body:last').append(HTMLschoolMajor.replace('%data%', education.schools[i].majors));
+                    }
 
 
             } //end schools loop
         } //end if
+
         if (education.onlineCourses.length > 0) {
             $("#education").append(HTMLonlineClasses);
             for (var j = 0; j <= education.onlineCourses.length - 1; j++) {
-                $("#education").append(HTMLschoolStart);
-                $('.education-entry:last').append(HTMLonlineTitle.replace('%data%', education.onlineCourses[j].title) + HTMLonlineSchool.replace('%data%', education.onlineCourses[j].school));
-                $('.education-entry:last').append(HTMLonlineDates.replace('%data%', education.onlineCourses[j].dates));
-                $('.education-entry:last').append(HTMLonlineURL.replace('%data%', education.onlineCourses[j].url));
-
+    if ((j + 1) % 2 == 0) {
+     $('#online').append('<li class="even-online animate-box timeline-unverted"><div class="timeline-badge"><i class="icon-graduation-cap"></i></div><li>');
+                $(".even-online").append(HTMLonlineClasses);
+                $('.online-head:last').append(HTMLonlineTitle.replace('%data%', education.onlineCourses[j].title) + HTMLonlineSchool.replace('%data%', education.onlineCourses[j].school));
+                $('.online-head:last').append(HTMLonlineDates.replace('%data%', education.onlineCourses[j].dates));
+                $('.timeline-body:last').append(HTMLonlineURL.replace('%data%', education.onlineCourses[j].url));
+}//end if even
+else{
+      $('#online').append('<li class="odd-online timeline-inverted animate-box"><div class="timeline-badge"><i class="icon-graduation-cap"></i></div><li>');
+                $(".odd-online").append(HTMLonlineClasses);
+                $('.online-head:last').append(HTMLonlineTitle.replace('%data%', education.onlineCourses[j].title) + HTMLonlineSchool.replace('%data%', education.onlineCourses[j].school));
+                $('.online-head:last').append(HTMLonlineDates.replace('%data%', education.onlineCourses[j].dates));
+                $('.timeline-body:last').append(HTMLonlineURL.replace('%data%', education.onlineCourses[j].url));
+}
             } //end online courses loop
         } //end if
     } //end displayEducation
 }; //end education
 
-education.display();
+
 
 //Adding map
 $('#mapDiv').append(googleMap);
+
+bio.display();
+
+work.display();
+
+projects.display();
+
+education.display();

@@ -12,50 +12,50 @@ Cameron Pittman
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
-var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr>';
+var HTMLheaderName = '<span>%data%</span>';
+var HTMLheaderRole = '<span>%data%</span>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
-var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
-var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
+var HTMLmobile = '<li><span class="first-block">Mobile:</span><span class="second-block">+%data%</span></li>';
+var HTMLemail = '<li><span class="first-block">Email:</span><span class="second-block">%data%</span></li>';
 var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
+var HTMLgithub = '<li><span class="first-block">Github:</span><span class="second-block">%data%</span></li>';
 var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+var HTMLlocation = '<li><span class="first-block">Location:</span><span class="second-block">%data%</span></li>';
 
-var HTMLbioPic = '<img src="%data%" class="biopic">';
-var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
+var HTMLbioPic = 'background: url(%data%);';
+var HTMLwelcomeMsg = '<h2>%data%</h2>';
 
-var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
-var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+var HTMLskillsStart = '<div class="skills-entry row row-pb-md"> </div>';
+var HTMLskills = '<div class="col-md-3 col-sm-6 col-xs-12 text-center"> <div class="chart" data-percent="95"><span><strong>%data%</strong>95%</span></div></div>';
 
-var HTMLworkStart = '<div class="work-entry"></div>';
-var HTMLworkEmployer = '<a href="#">%data%';
-var HTMLworkTitle = ' - %data%</a>';
-var HTMLworkDates = '<div class="date-text">%data%</div>';
-var HTMLworkLocation = '<div class="location-text">%data%</div>';
-var HTMLworkDescription = '<p><br>%data%</p>';
+var HTMLworkStart = '<div class="timeline-panel"><div class="work-head timeline-heading"></div><div class="timeline-body"> <p></p></div>  </div> ';
+var HTMLworkEmployer = ' <span class="company">%data% ';
+var HTMLworkTitle = '<h3 class="timeline-title">%data%</h3> </div>';
+var HTMLworkDates = '%data%';
+var HTMLworkLocation = '%data%</span>';
+var HTMLworkDescription = '<div class="work-body timeline-body"><p>%data%</p></div>';
 
-var HTMLprojectStart = '<div class="project-entry"></div>';
-var HTMLprojectTitle = '<a href="#">%data%</a>';
-var HTMLprojectDates = '<div class="date-text">%data%</div>';
-var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectStart = '<div class="projects-entry row"></div>';
+var HTMLprojectTitle = '<h3>%data%</h3>';
+var HTMLprojectDates = '<span>%data%</span>';
+var HTMLprojectDescription = '<span>%data%</span>';
+var HTMLprojectImage = '<div class="col-md-3 text-center col-padding animate-box"><a href="#" class="work" style="background-image: url(%data%);"><div class="desc"> </div> </a></div>';
 
-var HTMLschoolStart = '<div class="education-entry"></div>';
-var HTMLschoolName = '<a href="#">%data%';
-var HTMLschoolDegree = ' - %data%</a>';
-var HTMLschoolDates = '<div class="date-text">%data%</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
-var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+var HTMLschoolStart = '<div class="timeline-panel"><div class="edu-head timeline-heading"></div><div class="timeline-body"> <p></p></div>  </div> ';
+var HTMLschoolName = ' <span class="company">%data% ';
+var HTMLschoolDegree = '<h3 class="timeline-title">%data%</h3> </div>';
+var HTMLschoolDates = '%data%';
+var HTMLschoolLocation = '%data%</span>';
+var HTMLschoolMajor = '<div class="edu-body timeline-body"><p>Major: %data%</p></div>';
 
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
-var HTMLonlineSchool = ' - %data%</a>';
-var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineClasses = '<div class="timeline-panel"><div class="online-head timeline-heading"></div><div class="timeline-body"> <p></p></div>  </div> ';
+var HTMLonlineTitle = '<h3 class="timeline-title">%data%';
+var HTMLonlineSchool = ' - %data%</h3> </div>';
+var HTMLonlineDates = '<span class="company">%data% </span>';
+var HTMLonlineURL = '<div class="work-body timeline-body"><p>%data%</p></div>';
 
-var internationalizeButton = '<button>Internationalize</button>';
+var internationalizeButton = '<a href="#" class="btn btn-default btn-lg">Internationalize</a>';
 var googleMap = '<div id="map"></div>';
 
 
@@ -63,10 +63,10 @@ var googleMap = '<div id="map"></div>';
 The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
-  $('button').click(function() {
+  $('#button').click(function() {
     var $name = $('#name');
     var iName = inName($name.text()) || function(){};
-    $name.html(iName);
+    $name.html('<span>'+iName+'</span>');
   });
 });
 
